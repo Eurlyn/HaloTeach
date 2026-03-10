@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halo-Teach! - Special Needs Parent Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;1,400&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sage-green: #9CAF88;
+            --sage-dark: #7A8F6A;
+            --warm-cream: #F5F1E8;
+            --soft-terracotta: #D4A574;
+            --terracotta-light: #E8C9A8;
+            --calm-lavender: #B8A9C9;
+            --lavender-light: #D4C9E0;
+            --text-dark: #2C3E2D;
+            --text-medium: #5A6B5C;
+            --text-light: #8B9A8D;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 20px rgba(44, 62, 45, 0.08);
+            --shadow-medium: 0 8px 30px rgba(44, 62, 45, 0.12);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(156, 175, 136, 0.2);
+            transition: var(--transition);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--sage-green), var(--sage-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-icon::before,
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+        }
+
+        .logo-icon::before {
+            width: 24px;
+            height: 24px;
+        }
+
+        .logo-icon::after {
+            width: 32px;
+            height: 32px;
+        }
+
+        .logo-text {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .logo-tagline {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+            font-family: 'Lora', serif;
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-medium);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: var(--sage-dark);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sage-green);
+            transition: var(--transition);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--sage-green);
+            color: var(--white);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(156, 175, 136, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-cta:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(156, 175, 136, 0.4);
+        }
+
+        .b2b-badge {
+            background: var(--warm-cream);
+            color: var(--text-medium);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-family: 'Poppins', sans-serif;
+            text-decoration: none;
+            border: 1px solid var(--sage-green);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .b2b-badge:hover {
+            background: var(--sage-green);
+            color: var(--white);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--warm-cream) 0%, var(--white) 100%);
+            padding: 8rem 5% 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            min-height: 80vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(156, 175, 136, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(156, 175, 136, 0.15);
+            color: var(--sage-dark);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge i {
+            color: var(--sage-green);
+        }
+
+        .hero h1 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: var(--text-dark);
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            color: var(--sage-dark);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: rgba(156, 175, 136, 0.3);
+            z-index: -1;
+            border-radius: 4px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--sage-green);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(156, 175, 136, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(156, 175, 136, 0.5);
+        }
+
+        .btn-secondary {
+            color: var(--text-medium);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+            padding: 1rem;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-secondary:hover {
+            color: var(--sage-dark);
+            gap: 12px;
+        }
+
+        .hero-visual {
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-container {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            background: var(--white);
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16/10;
+            background: url('https://images.unsplash.com/photo-1588072432836-e10032774350?auto=format&fit=crop&q=80&w=1000') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(44, 62, 45, 0.2);
+            transition: var(--transition);
+        }
+
+        .video-placeholder:hover::before {
+            background: rgba(44, 62, 45, 0.4);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+            border: none;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .play-button i {
+            color: var(--sage-green);
+            font-size: 1.8rem;
+            margin-left: 5px;
+        }
+
+        .video-badge {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 2;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .video-badge::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #ff4757;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Narrative Section */
+        .narrative-section {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-block;
+            background: rgba(156, 175, 136, 0.15);
+            color: var(--sage-dark);
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: clamp(2rem, 3vw, 2.5rem);
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .quote-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .quote-card {
+            background: var(--warm-cream);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .quote-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--sage-green);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .quote-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--sage-green);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .quote-icon i {
+            color: var(--white);
+            font-size: 1.8rem;
+        }
+
+        .quote-text {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .quote-author {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: var(--sage-dark);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .quote-author::before {
+            content: '';
+            width: 40px;
+            height: 2px;
+            background: var(--sage-green);
+        }
+
+        .explanation-box {
+            background: linear-gradient(135deg, var(--sage-green), var(--sage-dark));
+            border-radius: 24px;
+            padding: 3rem;
+            color: var(--white);
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .explanation-box h3 {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .explanation-box p {
+            font-size: 1.15rem;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        /* How It Works Section */
+        .how-it-works {
+            padding: 6rem 5%;
+            background: linear-gradient(to bottom, var(--white), var(--warm-cream));
+        }
+
+        .app-showcase {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+            position: relative;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .phone-mockup {
+            background: var(--white);
+            border-radius: 36px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow-medium);
+            border: 10px solid #2a2a2a;
+            position: relative;
+            transition: var(--transition);
+            background-clip: padding-box;
+        }
+
+        .phone-mockup:hover {
+            transform: translateY(-10px);
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45%;
+            height: 25px;
+            background: #2a2a2a;
+            border-radius: 0 0 16px 16px;
+            z-index: 2;
+        }
+
+        .phone-screen {
+            background: var(--warm-cream);
+            border-radius: 24px;
+            overflow: hidden;
+            aspect-ratio: 9/19;
+            position: relative;
+        }
+
+        .screen-content {
+            padding: 1.5rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .screen-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            padding-top: 1.5rem;
+        }
+
+        .screen-number {
+            width: 36px;
+            height: 36px;
+            background: var(--sage-green);
+            color: var(--white);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .screen-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .screen-visual {
+            flex: 1;
+            background: var(--white);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        /* Specific screen visual styling to make it look more like an app */
+        .mock-profile {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--terracotta-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .mock-video-thumb {
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            background: url('https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=400') center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mock-video-thumb::after {
+            content: '\f144';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: white;
+            font-size: 2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .mock-graph {
+            width: 100%;
+            height: 100px;
+            background: repeating-linear-gradient(0deg, transparent, transparent 19px, #f0f0f0 20px);
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding-bottom: 5px;
+        }
+        .mock-bar {
+            width: 20%;
+            background: var(--sage-green);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .screen-visual-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .screen-caption {
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .connection-line {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background: linear-gradient(to right, var(--sage-green), var(--soft-terracotta));
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        .context-caption {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem;
+            background: rgba(156, 175, 136, 0.1);
+            border-radius: 16px;
+            font-size: 1.1rem;
+            color: var(--text-medium);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+        }
+
+        /* Soft Sell Section */
+        .soft-sell {
+            padding: 6rem 5%;
+            background: var(--white);
+        }
+
+        .offer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--warm-cream), var(--white));
+            border-radius: 32px;
+            padding: 4rem;
+            border: 2px solid var(--terracotta-light);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .offer-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .offer-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .offer-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 2.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-subtitle {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+        }
+
+        .discount-box {
+            background: var(--soft-terracotta);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(212, 165, 116, 0.3);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .discount-label {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .discount-amount {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .discount-desc {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        .offer-explanation {
+            text-align: center;
+            color: var(--text-medium);
+            font-size: 1.05rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
+        .offer-cta {
+            display: inline-flex;
+            margin-top: 2rem;
+            background: var(--sage-green);
+            color: var(--white);
+            padding: 1.2rem 3rem;
+            border-radius: 40px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(156, 175, 136, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+
+        .offer-cta:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(156, 175, 136, 0.5);
+        }
+
+        /* Trust Section */
+        .trust-section {
+            padding: 4rem 5%;
+            background: var(--warm-cream);
+            border-top: 1px solid rgba(156, 175, 136, 0.2);
+        }
+
+        .trust-content {
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .trust-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 2.5rem;
+        }
+
+        .partner-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .partner-logo {
+            width: 160px;
+            height: 80px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            opacity: 0.6;
+            transition: var(--transition);
+            box-shadow: var(--shadow-soft);
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .trust-caption {
+            font-size: 1rem;
+            color: var(--text-medium);
+            font-style: italic;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .footer-brand .logo-text {
+            color: var(--white);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .footer-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .footer-link:hover {
+            color: var(--sage-green);
+        }
+
+        .footer-copy {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.5);
+            width: 100%;
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Modal Styles (For Pitch Functionality) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 45, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            transform: translateY(20px);
+            transition: var(--transition);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--text-dark);
+            transform: rotate(90deg);
+        }
+
+        .modal-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .modal-title {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--warm-cream);
+            border-radius: 12px;
+            font-family: 'Lora', serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--sage-green);
+        }
+        
+        .modal-video-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .app-showcase {
+                gap: 1.5rem;
+            }
+            .connection-line {
+                display: none;
+            }
+            .hero {
+                padding-top: 7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                clip-path: circle(0% at top right);
+                transition: all 0.5s ease-in-out;
+            }
+
+            .nav-links.active {
+                clip-path: circle(150% at top right);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding-top: 8rem;
+            }
+
+            .hero-subtitle {
+                max-width: 100%;
+                margin: 0 auto 2rem;
+            }
+
+            .hero-cta-group {
+                justify-content: center;
+            }
+            
+            .hero::before {
+                top: -20%;
+                right: -50%;
+            }
+
+            .app-showcase {
+                grid-template-columns: 1fr;
+                max-width: 350px;
+            }
+
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .offer-container {
+                padding: 2.5rem 1.5rem;
+            }
+            
+            .discount-amount {
+                font-size: 3rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <a href="#" class="logo">
+            <div class="logo-icon"></div>
+            <div>
+                <div class="logo-text">Halo</div>
+                <div class="logo-tagline">Guidance for the journey</div>
+            </div>
+        </a>
+        <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        <div class="nav-links">
+            <a href="#how-it-works" class="nav-link">How it Works</a>
+            <a href="#narrative" class="nav-link">Our Approach</a>
+            <button class="b2b-badge" onclick="openModal('b2bModal')">For Schools & NGOs</button>
+            <button class="nav-cta" onclick="openModal('onboardingModal')">Start Free Trial</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge animate-in">
+                <i class="fas fa-heart"></i>
+                <span>Created by special needs educators</span>
+            </div>
+            <h1 class="animate-in delay-1">
+                Turn everyday moments into <span>breakthroughs</span>
+            </h1>
+            <p class="hero-subtitle animate-in delay-2">
+                Practical tools and teacher-led guidance for parents of neurodivergent children. 
+                No special training required—just 10 minutes a day.
+            </p>
+            <div class="hero-cta-group animate-in delay-3">
+                <button class="btn-primary" onclick="openModal('onboardingModal')">
+                    Start Your Journey
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+                <button class="btn-secondary" onclick="openModal('videoModal')">
+                    <i class="fas fa-play-circle"></i>
+                    See how it works
+                </button>
+            </div>
+        </div>
+        <div class="hero-visual animate-in delay-2">
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <button class="play-button" onclick="openModal('videoModal')">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <div class="video-badge">
+                        Watch real families
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Soft Selling Narrative -->
+    <section id="narrative" class="narrative-section">
+        <div class="section-header">
+            <span class="section-tag">Real Stories</span>
+            <h2 class="section-title">You are not alone. We've been there.</h2>
+        </div>
+        <div class="quote-cards">
+            <div class="quote-card fade-up">
+                <div class="quote-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <p class="quote-text">
+                    "Did you know a child with this spectrum can learn reading comprehension without formal homework? It's about finding their unique pathway."
+                </p>
+                <div class="quote-author">Sarah, Special Needs Teacher</div>
+            </div>
+            <div class="quote-card fade-up delay-1">
+                <div class="quote-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <p class="quote-text">
+                    "I didn't know how to handle the meltdowns. My Halo teacher showed me a 5-minute game that changed our evenings. Now, we use the app to track his progress."
+                </p>
+                <div class="quote-author">Michael, Parent of 8-year-old</div>
+            </div>
+        </div>
+        <div class="explanation-box fade-up delay-2">
+            <h3>Simple strategies, profound impact</h3>
+            <p>We translate therapy center strategies into simple, 10-minute activities you can do at home. No special training required—just guidance from educators who understand.</p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="section-header">
+            <span class="section-tag">The Experience</span>
+            <h2 class="section-title">Guidance in your pocket</h2>
+        </div>
+        <div class="app-showcase">
+            <div class="connection-line"></div>
+            <div class="phone-mockup fade-up">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="screen-content">
+                        <div class="screen-header">
+                            <div class="screen-number">1</div>
+                            <div class="screen-title">Set Your Focus</div>
+                        </div>
+                        <div class="screen-visual">
+                            <div class="mock-profile"><i class="fas fa-user"></i></div>
+                            <div class="screen-visual-text">Personalize your child's learning profile</div>
+                        </div>
+                        <div class="screen-caption">Log in and tell us about your child's unique strengths</div>
+                    </div>
+                </div>
+            </div>
+            <div class="phone-mockup fade-up delay-1">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="screen-content">
+                        <div class="screen-header">
+                            <div class="screen-number">2</div>
+                            <div class="screen-title">Watch & Learn</div>
+                        </div>
+                        <div class="screen-visual">
+                            <div class="mock-video-thumb"></div>
+                            <div class="screen-visual-text">Short video demonstrations from real teachers</div>
+                        </div>
+                        <div class="screen-caption">See exactly how to guide your child step-by-step</div>
+                    </div>
+                </div>
+            </div>
+            <div class="phone-mockup fade-up delay-2">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="screen-content">
+                        <div class="screen-header">
+                            <div class="screen-number">3</div>
+                            <div class="screen-title">Track Progress</div>
+                        </div>
+                        <div class="screen-visual">
+                            <div class="mock-graph">
+                                <div class="mock-bar" style="height: 30%"></div>
+                                <div class="mock-bar" style="height: 50%"></div>
+                                <div class="mock-bar" style="height: 80%"></div>
+                                <div class="mock-bar" style="height: 60%"></div>
+                            </div>
+                            <div class="screen-visual-text">Visual progress tracking & celebrations</div>
+                        </div>
+                        <div class="screen-caption">See the small wins add up to big breakthroughs</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="context-caption fade-up">
+            Every lesson is a short video from an experienced teacher. Watch, learn, and apply it immediately during your daily routines.
+        </div>
+    </section>
+
+    <!-- Soft Sell Section -->
+    <section class="soft-sell">
+        <div class="offer-container fade-up">
+            <div class="offer-header">
+                <h3 class="offer-title">Support for every step of the journey</h3>
+                <p class="offer-subtitle">Join thousands of families finding their rhythm</p>
+            </div>
+            <div class="discount-box">
+                <div class="discount-label">Limited Time Offer</div>
+                <div class="discount-amount">20% OFF</div>
+                <div class="discount-desc">Your first month + free sensory learning kit</div>
+            </div>
+            <div class="offer-explanation">
+                <p>Your subscription helps us create more specialized content and connect families with the best tools for their children. <br>Cancel anytime—no questions asked.</p>
+                <button class="offer-cta" onclick="openModal('onboardingModal')">Claim Your Discount</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="trust-content fade-up">
+            <h3 class="trust-title">Supported by partners who care</h3>
+            <div class="partner-logos">
+                <div class="partner-logo">Edu Dept</div>
+                <div class="partner-logo">Autism Care</div>
+                <div class="partner-logo">TherapyNet</div>
+                <div class="partner-logo">Family First</div>
+            </div>
+            <p class="trust-caption">Providing free access to qualifying families through our nonprofit partnerships</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">
+            <div class="logo-text">Halo-Teach!</div>
+            <div class="logo-tagline" style="color: rgba(255,255,255,0.7);">Guidance for the journey</div>
+        </div>
+        <div class="footer-links">
+            <span class="footer-link" onclick="openModal('affiliateModal')">For Partners / Affiliates</span>
+            <span class="footer-link">Privacy Policy</span>
+            <span class="footer-link">Contact</span>
+        </div>
+        <div class="footer-copy">© 2024 Halo-Teach! All rights reserved. Concept created for pitch presentation.</div>
+    </footer>
+
+    <!-- Modals for Pitch Demonstration -->
+
+    <!-- Onboarding / Sign Up Modal -->
+    <div class="modal-overlay" id="onboardingModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('onboardingModal')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h3 class="modal-title">Personalize Your Journey</h3>
+                <p style="color: var(--text-medium)">Tell us a bit about your child so we can tailor the content.</p>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('In a live app, this would create an account and start the customized curriculum.'); closeModal('onboardingModal');">
+                <div class="form-group">
+                    <label class="form-label">Child's Age</label>
+                    <input type="number" class="form-input" placeholder="e.g. 6" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Primary Focus Area</label>
+                    <select class="form-input" required>
+                        <option value="">Select a focus area...</option>
+                        <option>Emotional Regulation / Meltdowns</option>
+                        <option>Communication & Speech</option>
+                        <option>Daily Routines & Transitions</option>
+                        <option>Sensory Processing</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Your Email</label>
+                    <input type="email" class="form-input" placeholder="you@example.com" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Start Free Trial</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- B2B Portal Modal -->
+    <div class="modal-overlay" id="b2bModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('b2bModal')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h3 class="modal-title">Halo for Organizations</h3>
+                <p style="color: var(--text-medium)">Equip your educators and support your parent network with bulk licenses.</p>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Inquiry sent! Our partnership team will contact you shortly.'); closeModal('b2bModal');">
+                <div class="form-group">
+                    <label class="form-label">Organization Name</label>
+                    <input type="text" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Estimated Families to Support</label>
+                    <select class="form-input">
+                        <option>10 - 50</option>
+                        <option>50 - 200</option>
+                        <option>200+</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">Request Information</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Affiliate / Partner Modal (Requested in Pitch Notes) -->
+    <div class="modal-overlay" id="affiliateModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('affiliateModal')"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <h3 class="modal-title">Partner Referral Program</h3>
+                <p style="color: var(--text-medium)">Share Halo with your community and provide them with a 20% discount.</p>
+            </div>
+            <div style="background: var(--warm-cream); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; text-align: center;">
+                <p style="font-family: 'Poppins'; font-weight: 600; margin-bottom: 0.5rem;">Your Unique Partner Link</p>
+                <code style="background: white; padding: 0.8rem; border-radius: 6px; display: block; border: 1px dashed var(--sage-green); color: var(--sage-dark);">halo-teach.com/ref/partner2024</code>
+            </div>
+            <button class="btn-secondary" style="width: 100%; justify-content: center; border: 2px solid var(--sage-green);" onclick="alert('Link copied to clipboard!');">
+                <i class="fas fa-copy"></i> Copy Link
+            </button>
+        </div>
+    </div>
+
+    <!-- Video Player Modal -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-content" style="max-width: 800px; padding: 1rem;">
+            <button class="modal-close" style="top: -2.5rem; right: 0; color: white;" onclick="closeModal('videoModal')"><i class="fas fa-times"></i></button>
+            <div class="modal-video-container">
+                <p><i class="fas fa-play-circle" style="font-size: 3rem; margin-bottom: 1rem; color: var(--sage-green);"></i><br>[ Brand Video Placeholder ]</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Smooth scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target); // Only animate once
+                }
+            });
+        }, observerOptions);
+
+        // Setup elements for animation
+        document.querySelectorAll('.fade-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
+            observer.observe(el);
+        });
+
+        // Navigation scroll effect
+        const nav = document.querySelector('.nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+                nav.style.padding = '0.8rem 5%';
+            } else {
+                nav.style.boxShadow = 'none';
+                nav.style.padding = '1rem 5%';
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Modal Logic
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
